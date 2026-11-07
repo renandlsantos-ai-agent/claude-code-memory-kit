@@ -1,16 +1,17 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Claude Code Project Memory Kit – US$19</title><style>body{font-family:system-ui,sans-serif;max-width:760px;margin:40px auto;padding:0 20px;line-height:1.6;color:#1a1a1a}h1{font-size:2rem}.btn{display:inline-block;background:#635bff;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:600}code{background:#f2f2f2;padding:2px 5px;border-radius:4px}.note{background:#fff8e1;padding:12px 16px;border-radius:8px}</style></head><body>
 <h1>Stop re-explaining your project to Claude Code every session</h1>
-<p>A ready-to-copy memory setup for Claude Code (and Codex CLI): structured Markdown memory files, slash commands, a SessionStart hook, an installer and a short guide. Install in about 2 minutes. No server, no database, no extra API costs. <strong>v1.4</strong></p>
+<p>A ready-to-copy memory setup for Claude Code (and Codex CLI): structured Markdown memory files, slash commands, a SessionStart hook, an installer and a short guide. Install in about 2 minutes. No server, no database, no extra API costs. <strong>v1.5</strong></p>
 <p><a class="btn" href="https://buy.stripe.com/9B65kDefLahd3U7eHU0RG06">Get the kit – US$19</a></p>
 <h2>What you get</h2><ul>
 <li><code>CLAUDE.md</code> and <code>AGENTS.md</code> templates with memory rules the agent follows</li>
 <li><code>memory/</code> files: project facts, decisions log, progress handoff, gotchas</li>
-<li><code>/recap</code> (start of session), <code>/remember</code> (end of session), <code>/handover</code> (fresh session when the thread gets expensive), <code>/bootcheck</code> (audit always-on boot context after install or when boot feels heavy), and <code>/pathscope</code> (save a path-scoped rule to an on-disk file)</li>
+<li><code>/recap</code> (start of session), <code>/remember</code> (end of session), <code>/handover</code> (fresh session when the thread gets expensive), <code>/bootcheck</code> (audit always-on boot context after install or when boot feels heavy), <code>/pathscope</code> (save a path-scoped rule to an on-disk file), and <code>/allowcanon</code> (install the on-disk shell-allow policy)</li>
 <li>SessionStart hook that loads your latest progress automatically</li>
 <li><code>install.sh</code> that never overwrites your existing files</li>
-<li>Guide: how Claude Code memory works, daily workflow, hygiene, what survives <code>/compact</code>, expensive-thread handoff, boot-tax hygiene, and when to use another tool</li>
+<li>Guide: how Claude Code memory works, daily workflow, hygiene, what survives <code>/compact</code>, expensive-thread handoff, boot-tax hygiene, path-scoped rules, canonical shell Allow, and when to use another tool</li>
 <li>Guide note on what survives <code>/compact</code>: root <code>CLAUDE.md</code> and on-disk <code>memory/</code> files that <code>/recap</code> reloads (path-scoped chat-only rules often get dropped)</li>
-<li>New in v1.4 – path-scoped rules on disk: <code>/pathscope &quot;src/api/**&quot; always return typed errors</code> writes <code>.claude/rules/api.md</code> with <code>paths:</code> frontmatter, so the rule still applies after <code>/compact</code> and in new sessions. Includes an example rule file and a template.</li>
+<li>Path-scoped rules on disk: <code>/pathscope &quot;src/api/**&quot; always return typed errors</code> writes <code>.claude/rules/api.md</code> with <code>paths:</code> frontmatter</li>
+<li>New in v1.5 – approve only the canonical command string: <code>/allowcanon</code> installs <code>.claude/rules/shell-allow.md</code> so you Deny when the UI string and the shell string differ (env-prefix / obfuscation). Mismatches go to <code>gotchas.md</code>. Chat-only &quot;be careful with Allow&quot; reminders die on <code>/compact</code>; this rule file does not.</li>
 <li>Boot-tax note: keep always-loaded <code>CLAUDE.md</code> lean (only import <code>project.md</code>) so typing &quot;hi&quot; does not burn 30k+ tokens of project context before real work; run <code>/bootcheck</code> to audit</li>
 </ul>
 <h2>Who it's for</h2><p>Solo devs and indie hackers who use Claude Code or Codex CLI and want an explicit, git-tracked, reviewable project memory.</p>
